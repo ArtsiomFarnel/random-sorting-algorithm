@@ -1,4 +1,5 @@
 // .exe = https://drive.google.com/file/d/1wkoVQLiaDilv0SuahEp-GMpNxBgtgTte/view?usp=sharing
+// use numbers less than 1000
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +10,7 @@
 int main () {
 	setlocale(LC_ALL, "Ru");
 	srand(time(NULL));
-	printf("Vvedite kolvo:\n");
+	printf("Input array length:\n");
 	int n;
 	scanf("%d", &n);
 	int arr[n];
