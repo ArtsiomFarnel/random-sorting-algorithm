@@ -1,3 +1,5 @@
+// .exe = https://drive.google.com/file/d/1wkoVQLiaDilv0SuahEp-GMpNxBgtgTte/view?usp=sharing
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -43,13 +45,13 @@ int main () {
 		}*/
 		k++;
 	}
-printf("Iterations: ");
-printf("%d", k);
-printf("\n");
+	printf("Iterations: ");
+	printf("%d", k);
+	printf("\n");
 	printf("Result: \n");
 	for (int i = 0; i < n; i++) {
 		printf("%d ", arr[i]);
 	}
-getch();
+	getch();
 	return 0;
 }
