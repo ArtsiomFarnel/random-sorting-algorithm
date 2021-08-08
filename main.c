@@ -1,58 +1,69 @@
 // .exe = https://drive.google.com/file/d/1wkoVQLiaDilv0SuahEp-GMpNxBgtgTte/view?usp=sharing
-// use numbers less than 1000
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <locale.h>
 #include <conio.h>
 
-int main () {
-	setlocale(LC_ALL, "Ru");
+void main (void) {
 	srand(time(NULL));
-	printf("Input array length:\n");
-	int n;
-	scanf("%d", &n);
-	int arr[n];
-	for (int i = 0; i < n; i++) {
-		//scanf("%d", &arr[i]);
-		arr[i] = rand() % 10000;
-	}
-	int x, y;
-	int tmp = 0;
-	int bad = 1;
-	int k = 0;
-	while (bad) {
-		bad = 0;
-		x = rand() % (n);
-		//printf("x=%d\n", x);
-		y = rand() % (n);
-		//printf("y=%d\n", y);
-		if ((x < y && arr[x] > arr[y]) || (x > y && arr[x] < arr[y])) {
-			tmp = arr[x];
-			arr[x] = arr[y];
-			arr[y] = tmp;
+
+	int array_length;
+	printf("Input array length (less than 100000): ");
+	while (1) {
+		if (scanf("%d", &array_length) == 1) {
+			if (array_length > 100000 || array_length <= 0) {
+				array_length = 100000;
+				printf("Array length is %d", array_length);
+			}
+			break;
 		}
-		for (int j = 0; j < n-1; j++) {
+		else {
+			printf("Please, Input an integer value: ");
+			fflush(stdin);
+		}
+	}
+
+	clock_t tic = clock();
+
+	int arr[array_length];
+	for (int i = 0; i < array_length; i++)
+		arr[i] = rand() % array_length;
+
+	printf("Generated array:\n");
+	for (int i = 0; i < array_length; i++)
+		printf("%d ", arr[i]);
+	
+	int left, right, tmp, counter = 0, flag = 1;
+	printf("\nSorting...");
+	while (flag) {
+		flag = 0;
+		left = rand() % array_length;
+		right = rand() % array_length;
+		//printf("\nNow indexes are %d and %d", left, right);
+
+		if ((left < right && arr[left] > arr[right]) || (left > right && arr[left] < arr[right])) {
+			tmp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = tmp;
+		}
+		
+		for (int j = 0; j < array_length-1; j++) {
 			if (arr[j] > arr[j+1]) {
-				bad = 1;
+				flag = 1;
+				//printf("\nNew iteration");
+				break;
 			}
 		}
-		/*if (k == 1000000) {
-			printf("1M\n");
-			//printf("%d", arr[n-1]);
-			//printf("\n");
-			k = 0;
-		}*/
-		k++;
+		counter++;
 	}
-	printf("Iterations: ");
-	printf("%d", k);
-	printf("\n");
-	printf("Result: \n");
-	for (int i = 0; i < n; i++) {
+	printf("\nIterations: %d", counter);
+
+	printf("\nSorted array:\n");
+	for (int i = 0; i < array_length; i++)
 		printf("%d ", arr[i]);
-	}
+	
+	clock_t toc = clock();
+	printf("\nElapsed: %f seconds\n", (double)(toc - tic) / CLOCKS_PER_SEC);
 	getch();
-	return 0;
 }
