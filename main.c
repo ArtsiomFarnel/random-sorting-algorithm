@@ -1,7 +1,3 @@
-//
-// .exe = https://drive.google.com/file/d/1KqXQ5YgoBqOX3fFZMen17KCIX_vPrSY7/view?usp=sharing
-//
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
